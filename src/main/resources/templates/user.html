@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf连接数据库案例</title>
+    <!-- 	CSS美化表格 -->
+    <style type="text/css">
+        table {
+            width: 90%;
+            background: #ccc;
+            margin: 10px auto;
+            border-collapse: collapse;
+        }
+        caption {
+            font-size: larger;
+            margin: 1em auto;
+        }
+        th, td {
+            font-size: 12px;
+            padding: .65em;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+        }
+        td {
+            border: 1px solid#777;
+        }
+        th {
+            background: #696969;
+            color:#FFFFFF;
+            font-weight: normal;
+        }
+        tbody tr:nth-child(odd) {
+            background: #ccc;
+        }
+        tr {
+            background: #fff;
+        }
+        tr:hover {
+            background: #00CC33;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--判断数据库的表是否有数据-->
+<table border="1px" th:if="${not#lists.isEmpty(userInfoList)}">
+    <tr>
+        <td>编码</td>
+        <td>用户名</td>
+        <td>密码</td>
+    </tr>
+    <tr th:each="user:${userInfoList}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+    </tr>
+</table>
+<button value="name" onclick="showName()" style="display:block;margin:0 auto">点击</button>
+</body>
+<script th:inline="javascript">
+    function showName() {
+        var name = [[${name}]];
+        alert(name);
+    }
+</script>
+
+</html>
