@@ -23,4 +23,6 @@ public interface UserBiz {
     List<UserInfo> selectAllUserInfo();
 
     UserInfo selectByUsername(String name);
+
+    int insertSelective(UserInfo userInfo);
 }

@@ -43,4 +43,9 @@ public class UserInfoBizImpl implements UserBiz {
     public UserInfo selectByUsername(String name) {
         return infoMapper.selectByUsername(name);
     }
+
+    @Override
+    public int insertSelective(UserInfo userInfo) {
+        return infoMapper.insertSelective(userInfo);
+    }
 }

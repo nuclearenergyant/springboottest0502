@@ -1,4 +1,4 @@
-package www.diandian.shiro;
+package www.diandian.util;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.util.DigestUtils;

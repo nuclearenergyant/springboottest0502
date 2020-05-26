@@ -24,7 +24,7 @@ import java.util.List;
  * \* 功能说明：
  * \
  */
-
+/*@ResetController包含了@Controller和@ResponseBody*/
 @Controller
 public class UserInfoController {
 

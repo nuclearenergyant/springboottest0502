@@ -37,6 +37,7 @@ public class ShiroController {
     }
 
 
+    /*请求login.html页面*/
     @RequestMapping("/toLogin")
     public String toLogin(){
         return "login";
@@ -63,9 +64,10 @@ public class ShiroController {
             return "login";
         }
 
-        /*进入添加、修改用户界面*/
+        //登陆成功后去的.html
+        //进入添加、修改用户界面
         return "shiro";
-        /*进入用户界面*/
+        //进入用户界面
         //return "layuitest";
     }
 

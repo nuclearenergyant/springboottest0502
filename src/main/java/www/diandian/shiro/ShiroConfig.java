@@ -37,6 +37,17 @@ public class ShiroConfig {
         return manager;
     }
 
+
+    /*使用认证过滤器
+     * 过滤器的分类
+     * anon:无需认证
+     * authc:必须认证
+     * user:使用rememberme的时候用
+     * perms:访问的资源需要某个权限才能到达
+     * roles:访问的资源需要某个角色才能到达
+     * */
+
+
     /*shiroFilterFactorybean
     * shiro安全过滤器
     * */
@@ -44,24 +55,15 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(){
         ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager());
-        /*使用认证过滤器
-        * 过滤器的分类
-        * anon:无需认证
-        * authc:必须认证
-        * user:使用rememberme的时候用
-        * perms:访问的资源需要某个权限才能到达
-        * roles:访问的资源需要某个角色才能到达
-        * */
 
-        /*过滤器链*/
+        //过滤器链
         Map<String,String> map=new LinkedHashMap<>();   //有序的
-        /*放行login.html*/
+        //放行login.html
         map.put("/login","anon");
-        /*添加页面需要把添加权限才能到达*/
         //添加页面需要有添加的权限才能到达
         map.put("/adduserInfo","perms[/adduserInfo]");
         map.put("/updateUserInfo","perms[/updateUserInfo]");
-        /*所有的请求都需要验证*/
+        //所有的请求都需要验证
         map.put("/*","authc");  //为了其他实验，先暂时修改
         //map.put("/*","anon");
 

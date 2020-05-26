@@ -54,6 +54,7 @@ public class UserInfoRealm extends AuthorizingRealm {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         UserInfo userInfo = userBiz.selectByUsername(usernamePasswordToken.getUsername());
         //System.out.println("userinfo:"+userInfo.getUsername()+"+"+userInfo.getPassword());
+        //认证失败
         if(userInfo==null){
             return null;
         }

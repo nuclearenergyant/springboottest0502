@@ -6,8 +6,8 @@ import www.diandian.entity.UserInfo;
 
 import java.util.List;
 
-@Mapper
-@Repository
+@Mapper    //结合spring boot和Mybatis，在配置文件添加后，能够定位到数据库
+@Repository   //一般运用于dao层，用于标注数据访问组件
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
