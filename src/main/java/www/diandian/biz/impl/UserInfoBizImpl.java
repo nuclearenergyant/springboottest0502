@@ -1,6 +1,5 @@
 package www.diandian.biz.impl;
 
-import org.apache.catalina.mbeans.UserMBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +8,6 @@ import www.diandian.biz.UserBiz;
 import www.diandian.dao.UserInfoMapper;
 import www.diandian.entity.UserInfo;
 
-import javax.xml.ws.ServiceMode;
 import java.util.List;
 
 /**

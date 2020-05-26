@@ -7,11 +7,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import www.diandian.biz.UserBiz;
 import www.diandian.biz.impl.UserInfoBizImpl;
 import www.diandian.entity.UserInfo;
-
-import java.util.Arrays;
 
 /**
  * \* Created with IntelliJ IDEA.
@@ -63,7 +60,7 @@ public class UserInfoRealm extends AuthorizingRealm {
         String sqlpassword=userInfo.getPassword();
         //第一个参数一旦放进对象，将被保存，可以用于授权处理
         SimpleAuthenticationInfo simpleAuthenticationInfo =
-                new SimpleAuthenticationInfo(userInfo,sqlpassword,"");
+                new SimpleAuthenticationInfo(userInfo,sqlpassword,getName());
         return simpleAuthenticationInfo;
     }
 
