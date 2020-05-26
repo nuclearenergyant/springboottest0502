@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import www.diandian.biz.UserBiz;
 import www.diandian.dao.UserInfoMapper;
 import www.diandian.entity.UserInfo;
+import www.diandian.util.ShiroUtilForUserinfo;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * \* Created with IntelliJ IDEA.
@@ -31,6 +33,9 @@ public class UserInfoBizImpl implements UserBiz {
     @Autowired
     private UserInfoMapper infoMapper;
 
+    @Autowired
+    private ShiroUtilForUserinfo shiroUtilForUserinfo;
+
 
     @Override
     public List<UserInfo> selectAllUserInfo() {
@@ -44,6 +49,9 @@ public class UserInfoBizImpl implements UserBiz {
 
     @Override
     public int insertSelective(UserInfo userInfo) {
-        return infoMapper.insertSelective(userInfo);
+        //在插入用户数据的时候，修改用户的密码，使得用户的'明文'密码变为密文'密码'
+        ShiroUtilForUserinfo shiroUtilForUserinfo=new ShiroUtilForUserinfo();
+        UserInfo newUserInfobychange=shiroUtilForUserinfo.changePassword02(userInfo);
+        return infoMapper.insertSelective(newUserInfobychange);
     }
 }

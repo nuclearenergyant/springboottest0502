@@ -1,10 +1,14 @@
 package www.diandian.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import www.diandian.util.MyConstants;
+import www.diandian.util.ShiroUtilForUserinfo;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,11 +26,13 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-
+    /*给UserInfoRealm使用*/
     /*realm*/
     @Bean
     public UserInfoRealm userInfoRealm(){
-        return new UserInfoRealm();
+        UserInfoRealm userInfoRealm=new UserInfoRealm();
+        userInfoRealm.setCredentialsMatcher(credentialsMatcher());
+        return userInfoRealm;
     }
 
     /*securityManager*/
@@ -75,6 +81,18 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+    /**
+     * 实例化密码比较器
+     */
+    @Bean
+    public CredentialsMatcher credentialsMatcher(){
+        HashedCredentialsMatcher credentialsMatcher= new HashedCredentialsMatcher();
+        //使用md5加密
+        credentialsMatcher.setHashAlgorithmName(MyConstants.algorithmName);
+        //加密1024次
+        credentialsMatcher.setHashIterations(MyConstants.hashIterations);
+        return credentialsMatcher;
+    }
 
     /**
      * 设置shiro的方言

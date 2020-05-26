@@ -1,5 +1,8 @@
 package www.diandian.test;
 
+import www.diandian.entity.UserInfo;
+import www.diandian.util.ShiroUtilForUserinfo;
+
 /**
  * \* Created with IntelliJ IDEA.
  * \* User: weige
@@ -11,6 +14,16 @@ package www.diandian.test;
  */
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("I Love You");
+//        UserInfo info=new
+//                UserInfo(1,"weige","hasee","","");
+//        ShiroUtilForUserinfo utilForUserinfo=new ShiroUtilForUserinfo();
+//        UserInfo userInfo_change=utilForUserinfo.changePassword(info);
+//        System.out.println(userInfo_change.toString());
+
+        UserInfo info=new
+                UserInfo(1,"weige","hasee","","");
+        ShiroUtilForUserinfo utilForUserinfo=new ShiroUtilForUserinfo();
+        UserInfo userInfo_change=utilForUserinfo.changePassword02(info);
+        System.out.println(userInfo_change.toString());
     }
 }

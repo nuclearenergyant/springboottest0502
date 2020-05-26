@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import www.diandian.biz.impl.UserInfoBizImpl;
 import www.diandian.entity.LayUITable;
 import www.diandian.entity.UserInfo;
+import www.diandian.util.MyConstants;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * \* Created with IntelliJ IDEA.
@@ -76,4 +79,21 @@ public class UserInfoController {
         return "layuitest";
     }
 
+
+
+    /*保存用户*/
+    @RequestMapping("/saveUserInfo")
+    @ResponseBody
+    public Object saveUserInfo(UserInfo userInfo){
+        int i=userInfoBiz.insertSelective(userInfo);
+        Map map= new HashMap<>();
+        if (i>0){
+            map.put("code", MyConstants.successCode);
+            map.put("massage",MyConstants.saveSuccess);
+        }else{
+            map.put("code",MyConstants.failCode);
+            map.put("massage",MyConstants.saveFail);
+        }
+        return map;
+    }
 }

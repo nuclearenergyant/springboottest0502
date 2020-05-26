@@ -6,6 +6,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import www.diandian.biz.impl.UserInfoBizImpl;
 import www.diandian.entity.UserInfo;
@@ -57,10 +58,28 @@ public class UserInfoRealm extends AuthorizingRealm {
         }
         //Object principal, Object credentials, String realmName
         //第二个参数是密码，数据库中的密码
-        String sqlpassword=userInfo.getPassword();
-        //第一个参数一旦放进对象，将被保存，可以用于授权处理
-        SimpleAuthenticationInfo simpleAuthenticationInfo =
-                new SimpleAuthenticationInfo(userInfo,sqlpassword,getName());
+//        String sqlpassword=userInfo.getPassword();
+//        //第一个参数一旦放进对象，将被保存，可以用于授权处理
+//        SimpleAuthenticationInfo simpleAuthenticationInfo =
+//                new SimpleAuthenticationInfo(userInfo,sqlpassword,
+//                        ByteSource.Util.bytes(userInfo.getSalt()),getName());
+//        System.out.println("查看密码了？");
+//        return simpleAuthenticationInfo;
+        //步骤二，查询密码是否正确
+        //数据库中的密码
+        String password=userInfo.getPassword();
+        //Object principal, Object credentials, String realmName
+        /**
+         *  * @param principal         the 'primary' principal associated with the specified realm.
+         *      * @param hashedCredentials the hashed credentials that verify the given principal.
+         *      * @param credentialsSalt   the salt used when hashing the given hashedCredentials
+         *      * @param realmName         the realm from where the principal and credentials were acquired.
+         */
+        String salt = userInfo.getSalt();
+        System.out.println(password);
+        System.out.println(salt);
+        ByteSource byteSource=ByteSource.Util.bytes(salt);
+        SimpleAuthenticationInfo simpleAuthenticationInfo= new SimpleAuthenticationInfo(userInfo,password,byteSource,getName());
         return simpleAuthenticationInfo;
     }
 

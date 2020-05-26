@@ -12,9 +12,12 @@ package www.diandian.util;
 public class MyConstants {
     //增删改成功
     public static final int successCode=0;
-    public static final int failCode=0;
+    public static final int failCode=1;
     
     public static final String saveSuccess="保存成功";
     public static final String saveFail="保存失败";
-    
+    //加密的算法
+    public static final String algorithmName="MD5";
+    //加密次数
+    public static final int hashIterations=1024;
 }
