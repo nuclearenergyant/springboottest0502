@@ -21,7 +21,10 @@ public class Demo {
 //        System.out.println(userInfo_change.toString());
 
         UserInfo info=new
-                UserInfo(1,"weige","hasee","","");
+                UserInfo();
+        info.setId(1);
+        info.setUsername("qqqqq");
+        info.setPassword("qqqqq");
         ShiroUtilForUserinfo utilForUserinfo=new ShiroUtilForUserinfo();
         UserInfo userInfo_change=utilForUserinfo.changePassword02(info);
         System.out.println(userInfo_change.toString());

@@ -29,4 +29,6 @@ public interface UserBiz {
     int delUserByID(List<String> ids);
 
     int updateByPrimaryKeySelective(UserInfo record);
+
+    int deleteByPrimaryKey(Integer id);
 }

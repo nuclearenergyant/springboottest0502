@@ -64,4 +64,11 @@ public class UserInfoBizImpl implements UserBiz {
     public int updateByPrimaryKeySelective(UserInfo record) {
         return infoMapper.updateByPrimaryKeySelective(record);
     }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        return infoMapper.deleteByPrimaryKey(id);
+    }
+
+
 }

@@ -131,4 +131,20 @@ public class UserInfoController {
         }
         return map;
     }
+
+    @RequestMapping("/delUserbyid")
+    @ResponseBody
+    public Object delUserbyid(int id){
+        System.out.println(id);
+        int i = userInfoBiz.deleteByPrimaryKey(id);
+        Map map= new HashMap<>();
+        if(i>0){
+            map.put("code",MyConstants.successCode);
+            map.put("message",MyConstants.delSuccessMsg);
+        }else {
+            map.put("code",MyConstants.failCode);
+            map.put("message",MyConstants.delFailMsg);
+        }
+        return map;
+    }
 }
