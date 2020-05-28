@@ -25,4 +25,8 @@ public interface UserBiz {
     UserInfo selectByUsername(String name);
 
     int insertSelective(UserInfo userInfo);
+
+    int delUserByID(List<String> ids);
+
+    int updateByPrimaryKeySelective(UserInfo record);
 }

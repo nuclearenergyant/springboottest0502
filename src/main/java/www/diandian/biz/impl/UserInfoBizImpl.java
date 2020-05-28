@@ -54,4 +54,14 @@ public class UserInfoBizImpl implements UserBiz {
         UserInfo newUserInfobychange=shiroUtilForUserinfo.changePassword02(userInfo);
         return infoMapper.insertSelective(newUserInfobychange);
     }
+
+    @Override
+    public int delUserByID(List<String> ids) {
+        return infoMapper.delUserByID(ids) ;
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(UserInfo record) {
+        return infoMapper.updateByPrimaryKeySelective(record);
+    }
 }

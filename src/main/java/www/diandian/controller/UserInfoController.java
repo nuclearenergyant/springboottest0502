@@ -1,11 +1,13 @@
 package www.diandian.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import www.diandian.biz.impl.UserInfoBizImpl;
 import www.diandian.entity.LayUITable;
@@ -93,6 +95,39 @@ public class UserInfoController {
         }else{
             map.put("code",MyConstants.failCode);
             map.put("massage",MyConstants.saveFail);
+        }
+        return map;
+    }
+
+
+    /*修改用户*/
+    @RequestMapping("/editUser")
+    @ResponseBody
+    public Object editUser(UserInfo userInfo){
+        int i = userInfoBiz.updateByPrimaryKeySelective(userInfo);
+        Map map= new HashMap<>();
+        if(i>0){
+            map.put("code",MyConstants.successCode);
+            map.put("message",MyConstants.editSuccessMsg);
+        }else {
+            map.put("code",MyConstants.failCode);
+            map.put("message",MyConstants.editFailMsg);
+        }
+        return map;
+    }
+    @RequestMapping("/delUser")
+    @ResponseBody
+    public Object delUser( @RequestParam(value = "ids") String  ids){
+        //将json字符串转换成list对象
+        List<String> list= (List<String>) JSON.parse(ids);
+        int i = userInfoBiz.delUserByID(list);
+        Map map= new HashMap<>();
+        if(i>0){
+            map.put("code",MyConstants.successCode);
+            map.put("message",MyConstants.delSuccessMsg);
+        }else {
+            map.put("code",MyConstants.failCode);
+            map.put("message",MyConstants.delFailMsg);
         }
         return map;
     }

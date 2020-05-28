@@ -28,7 +28,14 @@
     delete from userinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="www.diandian.entity.UserInfo">
+  <delete id="delUserByID"  parameterType="java.util.List">
+    delete from userinfo
+    where id in
+    <foreach collection="ids" item="xxx" open="(" close=")" separator=",">
+      #{xxx}
+    </foreach>
+  </delete>
+    <insert id="insert" parameterType="www.diandian.entity.UserInfo">
     insert into userinfo (id, username, password,
       salt, path)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},

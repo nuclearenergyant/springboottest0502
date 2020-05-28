@@ -66,9 +66,9 @@ public class ShiroController {
 
         //登陆成功后去的.html
         //进入添加、修改用户界面
-        return "shiro";
+        //return "shiro";
         //进入用户界面
-        //return "layuitest";
+        return "layuitest";
     }
 
     @RequestMapping("/failQ")
